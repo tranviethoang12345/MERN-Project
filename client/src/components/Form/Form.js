@@ -12,6 +12,7 @@ const Form = ({ currentId, setCurrentId }) => {
     message: "",
     tags: "",
     selectedFile: "",
+    
   });
 
   const post = useSelector((state) =>
@@ -30,23 +31,23 @@ const Form = ({ currentId, setCurrentId }) => {
     e.preventDefault();
 
     if (currentId === 0) {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
-    } else {
       dispatch(
         updatePost(currentId, { ...postData, name: user?.result?.name })
       );
+    } else {
+      dispatch(createPost({ ...postData, name: user?.result?.name }));
     }
     clear();
   };
 
-  if(!user?.result?.name) {
+  if (!user?.result?.name) {
     return (
       <Paper className={classes.paper}>
         <Typography variant="h6" align="center">
           Please Sign In to create your own memories and like other's memories.
         </Typography>
       </Paper>
-    )
+    );
   }
 
   const clear = () => {
@@ -70,18 +71,6 @@ const Form = ({ currentId, setCurrentId }) => {
         <Typography variant="h6">
           {currentId ? "Editing" : "Creating"} a Memory
         </Typography>
-
-        {/* Creator */}
-        {/* <TextField
-          name="creator"
-          variant="outlined"
-          label="Creator"
-          fullWidth
-          value={postData.creator}
-          onChange={(e) =>
-            setPostData({ ...postData, creator: e.target.value })
-          }
-        /> */}
 
         {/* Title */}
         <TextField
@@ -121,6 +110,20 @@ const Form = ({ currentId, setCurrentId }) => {
         <div className={classes.fileInput}>
           <Typography variant="h6" className={classes.title}>
             Image:
+          </Typography>
+          <FileBase
+            type="file"
+            multiple={false}
+            onDone={({ base64 }) =>
+              setPostData({ ...postData, selectedFile: base64 })
+            }
+          />
+        </div>
+
+        {/* PDF (file) */}
+        <div className={classes.fileInput}>
+          <Typography variant="h6" className={classes.title}>
+            File:
           </Typography>
           <FileBase
             type="file"

@@ -42,11 +42,19 @@ export default makeStyles({
     margin: "20px 0 0 20px",
   },
   title: {
-    padding: "0 0 16px 0",
+    padding: "0 0 2px 0",
   },
   cardActions: {
     padding: "0 4px 8px 8px",
     display: "flex",
     justifyContent: "space-between",
+  },
+
+  cardFileDownload:{
+    padding: "8px 16px 8px 16px",
+  },
+  buttonFileDownload: {
+    width:"auto",
+    height: "90%",
   },
 });
