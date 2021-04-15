@@ -60,7 +60,7 @@ const Post = ({ post, setCurrentId }) => {
       {/* Image */}
       <CardMedia
         className={classes.media}
-        image={post.selectedFile}
+        image={post.selectedImage}
         title={post.title}
       />
 
@@ -112,6 +112,8 @@ const Post = ({ post, setCurrentId }) => {
           type="download"
           size="small"
           disabled={!user?.result}
+          file={post.selectedFile}
+          title={post.title}
           fullWidth
           onClick={download}
         >

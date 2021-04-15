@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
 
 import useStyles from "./styles";
-import memories from "./../../images/memories.png";
+import imgPost from "./../../images/post.png";
 
 const Navbar = () => {
   const classes = useStyles();
@@ -48,12 +48,12 @@ const Navbar = () => {
           variant="h2"
           align="center"
         >
-          Memories
+          Workspace
         </Typography>
         <img
           className={classes.image}
-          src={memories}
-          alt="memories"
+          src={imgPost}
+          alt="imgPost" 
           height="60"
         />
       </div>
