@@ -1,5 +1,4 @@
 import React from 'react';
-import Base64Downloader from 'react-base64-downloader';
 import {
   Card,
   CardActions,
@@ -104,7 +103,7 @@ const Post = ({ post, setCurrentId }) => {
         <Typography className={classes.title} variant="h5">
           File:
         </Typography>
-        <Base64Downloader 
+        <Button 
           className={classes.buttonFileDownload}
           variant="contained"
           color="primary"
@@ -119,7 +118,7 @@ const Post = ({ post, setCurrentId }) => {
           onClick={download}
         >
           Download
-        </Base64Downloader>
+        </Button>
       </CardActions>
 
       <CardActions className={classes.cardActions}>
