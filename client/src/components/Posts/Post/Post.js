@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import Base64Downloader from 'react-base64-downloader';
 import {
   Card,
   CardActions,
@@ -6,22 +7,22 @@ import {
   Button,
   Typography,
   CardContent,
-} from "@material-ui/core/";
-import DeleteIcon from "@material-ui/icons/Delete";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import moment from "moment";
-import { useDispatch } from "react-redux";
+} from '@material-ui/core/';
+import DeleteIcon from '@material-ui/icons/Delete';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
 
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 
-import useStyles from "./styles";
-import { deletePost, likePost } from "../../../actions/posts";
+import useStyles from './styles';
+import { deletePost, likePost } from '../../../actions/posts';
 
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   const Likes = () => {
     if (post.likes.length > 0) {
@@ -33,12 +34,12 @@ const Post = ({ post, setCurrentId }) => {
           &nbsp;
           {post.likes.length > 2
             ? `You and ${post.likes.length - 1} others`
-            : `${post.likes.length} like${post.likes.length > 1 ? "s" : ""}`}
+            : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}
         </>
       ) : (
         <>
           <ThumbUpAltOutlined fontSize="small" />
-          &nbsp;{post.likes.length} {post.likes.length === 1 ? "Like" : "Likes"}
+          &nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}
         </>
       );
     }
@@ -51,9 +52,7 @@ const Post = ({ post, setCurrentId }) => {
     );
   };
 
-  const download = () => {
-    
-  }
+  const download = () => {};
 
   return (
     <Card className={classes.card}>
@@ -75,7 +74,7 @@ const Post = ({ post, setCurrentId }) => {
         user?.result?._id === post?.creator) && (
         <div className={classes.overlay2}>
           <Button
-            style={{ color: "white" }}
+            style={{ color: 'white' }}
             size="small"
             onClick={() => setCurrentId(post._id)}
           >
@@ -101,11 +100,11 @@ const Post = ({ post, setCurrentId }) => {
         </Typography>
       </CardContent>
 
-      <CardActions className={classes.cardFileDownload} >
+      <CardActions className={classes.cardFileDownload}>
         <Typography className={classes.title} variant="h5">
           File:
         </Typography>
-        <Button
+        <Base64Downloader 
           className={classes.buttonFileDownload}
           variant="contained"
           color="primary"
@@ -113,12 +112,14 @@ const Post = ({ post, setCurrentId }) => {
           size="small"
           disabled={!user?.result}
           file={post.selectedFile}
+          base64={post.selectedFile}
+          downloadName="file"
           title={post.title}
           fullWidth
           onClick={download}
         >
           Download
-        </Button>
+        </Base64Downloader>
       </CardActions>
 
       <CardActions className={classes.cardActions}>
