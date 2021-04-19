@@ -111,7 +111,6 @@ const Post = ({ post, setCurrentId }) => {
           size="small"
           disabled={!user?.result}
           file={post.selectedFile}
-          base64={post.selectedFile}
           downloadName="file"
           title={post.title}
           fullWidth
